@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sayangkuuuu ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #ff758c, #ffb6c1, #ffc3a0);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    padding: 35px 15px;
+}
+
+h1 {
+    font-size: clamp(28px, 7vw, 42px);
+    text-shadow: 0 0 15px #ff1493;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+button {
+    background: white;
+    color: #ff4081;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.slideshow {
+    width: min(280px, 85vw);
+    height: 330px;
+    margin: 25px auto;
+    position: relative;
+    overflow: hidden;
+    border: 4px solid white;
+    border-radius: 22px;
+    box-shadow: 0 0 25px #ff149377;
+    background: #ff9db5;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.heart {
+    position: fixed;
+    top: -40px;
+    z-index: 1;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+#surprise {
+    display: none;
+}
+
+.note {
+    max-width: 420px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff30;
+    border: 1px solid #ffffff80;
+    border-radius: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+
+    <div id="intro">
+        <h1>For My Naurah ❤️</h1>
+        <p>I have some gifts for u...</p>
+        <button onclick="openGift()">Buka hadiah 💌</button>
+    </div>
+
+    <div id="surprise">
+
+        <h1>I Love You Sayangku ❤️</h1>
+        <p>One little website, made just for you 💗</p>
+
+        <!-- TEMPAT FOTO KALIAN -->
+        <!-- Ganti nama file foto di bawah ini -->
+        <div class="slideshow">
+            <img src="DSC05416.JPG" class="slide active" alt="Foto 1">
+            <img src="DSC05447.JPG" class="slide" alt="Foto 2">
+            <img src="DSC05451.JPG" class="slide" alt="Foto 3">
+        </div>
+        <!-- AKHIR TEMPAT FOTO -->
+
+        <div class="note">
+            <h2>For You, Sayang 🌷</h2>
+            <p>
+                I might be not flawless,<br>
+                But i will be always <u><br>
+                better for u.<br><br>
+                Thank u for coming <br>
+                and becoming the best part of my lifes. ❤️
+            </p>
+            <h2>Always Loving You 💗</h2>
+        </div>
+
+    </div>
+</div>
+
+<audio id="song" src="waltz.mp3.mp3" preload="auto"></audio>
+
+<script>
+const song = document.getElementById("song");
+
+// Ubah ke detik awal bagian lagu yang kamu inginkan.
+// Contoh 90 = menit 1:30.
+// Isi setelah kamu mengetahui timestamp yang tepat.
+const startAt = 58;
+
+function openGift() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("surprise").style.display = "block";
+
+    // Coba putar musik saat tombol diklik.
+    song.currentTime = startAt;
+    song.play().catch(() => {
+        alert("Tekan tombol Putar Musik untuk mencoba lagi.");
+    });
+}
+
+function toggleMusic() {
+    if (song.paused) {
+        song.play().catch(() => {
+            alert("Pastikan file waltz.mp3 tersedia.");
+        });
+    } else {
+        song.pause();
+    }
+}
+
+// Slideshow otomatis: foto berganti setiap 3 detik.
+const slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+}, 3000);
+
+// Hati berjatuhan.
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+
+    const choices = ["❤️", "💗", "💕", "💖", "💘"];
+    heart.textContent =
+        choices[Math.floor(Math.random() * choices.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 8000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
